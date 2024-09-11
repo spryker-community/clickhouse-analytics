@@ -11,7 +11,7 @@
     {% else %}
     <ul>
         {% for key,userJourney in userJourneys %}
-            <li><a href="/clickhouse-analytics/index/user-journeys?user={{ key }}">{{ key }}</a></li>
+            <li><a href="/clickhouse-analytics/index/user-journeys?user={{ key }}">{{ key }} ({{ userJourney|length }} events)</a></li>
         {% endfor %}
         </ul>
     {% endif %}
