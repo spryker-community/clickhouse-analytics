@@ -31,7 +31,8 @@ services:
             - CLICKHOUSE_PASSWORD=
             - NODE_ENV=production
         volumes: ./ingest:/home/node/app
-        ports: "8888:8888"
+        ports:
+            - "8888:8888"
         command: "npm start"
         networks:
             - private
