@@ -26,7 +26,7 @@
         "zed": "node ./node_modules/@spryker/oryx-for-zed/build",
         "zed:watch": "node ./node_modules/@spryker/oryx-for-zed/build --dev",
         "zed:production": "node ./node_modules/@spryker/oryx-for-zed/build --prod",
-        "clickhouse:migrate": "node ./node_modules/clickhouse-migrations/lib/cli migrate --host=http://clickhouse:8123 --user=default --password='' --db=analytics --migrations-home=.clickhouse/migration/"
+        "clickhouse:migrate": "node ./node_modules/clickhouse-migrations/lib/cli migrate --host=http://${CLICKHOUSE_HOST}:${CLICKHOUSE_HTTP_PORT} --user=${CLICKHOUSE_USER} --password=${CLICKHOUSE_PASSWORD} --db=${CLICKHOUSE_DB} --migrations-home=.clickhouse/migration/"
     },
     "engines": {
         "node": ">=18.0.0",

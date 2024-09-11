@@ -130,6 +130,9 @@ sections:
         init-database:
             command: 'vendor/bin/console setup:init-db'
 
+        migrate-clickhouse:
+            command: 'npm run clickhouse:migrate'
+
     demodata:
         queue-setup:
             command: 'vendor/bin/console queue:setup'

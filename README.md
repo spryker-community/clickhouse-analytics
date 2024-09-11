@@ -4,11 +4,13 @@
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.1-8892BF.svg)](https://php.net/)
 
 ## Clickhouse stuff
-Instructions:
-- docker/sdk boot deploy.dev.yml
-- docker/sdk up
-- docker/sdk console npm install
-- docker/sdk console npm run clickhouse:migrate
+Information:
+- Clickhouse server is included via `deploy.dev.yml` with an extra docker-compose file
+  - All configs are located in the `.clickhouse` subdirectory and the `deploy.dev.yml`
+- There is also a small node-server (also included via docker-compose) which acts as an endpoint for data-colelction
+  - Logic is found in `.clickhouse/ingest`
+- during boot, build, and up everything is setup automatically and the migrations found in `.clickhouse/migrations` are applied
+  - Clickhouse migration can be run manually via `npm run clickhouse:migrate`
 
 ## Description
 

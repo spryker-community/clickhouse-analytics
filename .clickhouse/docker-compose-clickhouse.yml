@@ -22,13 +22,12 @@ services:
 
     ingest:
         image: "node:20-alpine3.20"
-        container_name: "clickouse-ingest"
+        container_name: "clickhouse-ingest"
+        restart: unless-stopped
         working_dir: /home/node/app
+        env_file:
+            - "./.clickhouse/.env.clickhouse"
         environment:
-            - CLICKHOUSE_HOST=clickhouse
-            - CLICKHOUSE_PORT=9000
-            - CLICKHOUSE_USER=default
-            - CLICKHOUSE_PASSWORD=
             - NODE_ENV=production
         volumes:
             - ./.clickhouse/ingest:/home/node/app
