@@ -24,6 +24,7 @@
                 <th>Event</th>
                 <th>Value</th>
                 <th>Payload</th>
+                <th>Page</th>
             </tr>
         {% for event in userJourneys[selectedUser] %}
             <tr>
@@ -31,6 +32,7 @@
                 <td>{{ event.name }}</td>
                 <td>{{ event.value }}</td>
                 <td>{{ event.content }}</td>
+                <td>{{ event.referer }}</td>
             </tr>
         {% endfor %}
         </table>

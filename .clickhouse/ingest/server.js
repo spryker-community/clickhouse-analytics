@@ -1,5 +1,6 @@
 const {createServer} = require('node:http');
 const { ClickHouse } = require('clickhouse');
+const crypto = require('crypto');
 
 const clickhouse = new ClickHouse({
     url: `http://${process.env.CLICKHOUSE_HOST}`,
@@ -14,14 +15,26 @@ const clickhouse = new ClickHouse({
 });
 
 const server = createServer(async (req, res) => {
-    res.statusCode = 200;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'authorization, content-type');
+
+    if (req.method === 'OPTIONS') {
+        res.writeHead(204);
+        res.end();
+        return;
+    }
+
     res.setHeader('Content-Type', 'text/plain');
 
-    let messages = '';
+    res.statusCode = 200;
+
+    let messages = req.headers.referer;
     try {
         const body = await parseBody(req);
-        await clickhouse.insert('INSERT INTO Event(name, user_id, value, content, timestamp)', [
+        await clickhouse.insert('INSERT INTO Event(id, name, user_id, value, referer, content, timestamp)', [
             {
+                id: crypto.randomUUID(),
                 name: body.name,
                 user_id: body.user_id,
                 value: body.value,

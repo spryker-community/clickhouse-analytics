@@ -1,0 +1,22 @@
+{% extends view('order-success', '@SprykerShop:CheckoutPage') %}
+
+{% block eventSender %}
+    {% set content = {
+        'orderReference': data.quote.orderReference,
+        'grandTotal': data.quote.totals.grandTotal | moneyRaw,
+    } %}
+    {% include molecule('event-sender', 'ClickhouseEventSenderWidget') with {
+        attributes: {
+            'user-session-id': app.session.id,
+            'value': content,
+        },
+    } only %}
+    %} %}
+    {% include molecule('event-sender', 'ClickhouseEventSenderWidget') with {
+        attributes: {
+            'user-session-id': app.session.id,
+            'value': data.quote.totals.grandTotal | moneyRaw,
+            'content': {{ content | json_encode }},
+        },
+    } only %}
+{% endblock %}

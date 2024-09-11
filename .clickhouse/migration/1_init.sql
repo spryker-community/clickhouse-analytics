@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS Event
     value Double,
     content JSON,
 )
-ENGINE=AggregatingMergeTree
-PARTITION BY toYYYYMM(timestamp)
+ENGINE=MergeTree
 ORDER BY (user_id)
 SETTINGS index_granularity = 8192;

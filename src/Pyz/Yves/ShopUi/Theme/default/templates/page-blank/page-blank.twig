@@ -5,3 +5,16 @@
 
     {{ parent() }}
 {% endblock %}
+
+{% block headScripts %}
+    {% block eventSender %}
+        {% include molecule('event-sender', 'ClickhouseEventSenderWidget') with {
+            attributes: {
+                'user-session-id': app.session.id,
+                'value': data.metaTitle ?: data.title,
+            },
+        } only %}
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}

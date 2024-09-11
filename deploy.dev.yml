@@ -97,6 +97,7 @@ groups:
                         entry-point: Configurator
                     yves.de.spryker.local:
                         store: DE
+                        cors-allow-origin: '*'
                         services:
                             session:
                                 namespace: 1
