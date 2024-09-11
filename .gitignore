@@ -108,3 +108,4 @@ docker
 
 #clickhouse
 /.clickhouse/logs
+/.clickhouse/ingest/node_modules

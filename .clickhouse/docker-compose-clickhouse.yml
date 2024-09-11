@@ -20,6 +20,23 @@ services:
                 soft: 262144
                 hard: 262144
 
+    ingest:
+        image: "node:20-alpine3.20"
+        container_name: "clickouse-ingest"
+        working_dir: /home/node/app
+        environment:
+            - CLICKHOUSE_HOST=clickhouse
+            - CLICKHOUSE_PORT=9000
+            - CLICKHOUSE_USER=default
+            - CLICKHOUSE_PASSWORD=
+            - NODE_ENV=production
+        volumes: ./ingest:/home/node/app
+        ports: "8888:8888"
+        command: "npm start"
+        networks:
+            - private
+
+
 networks:
     private:
 
