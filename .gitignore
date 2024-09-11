@@ -105,3 +105,6 @@ docker
 # angular
 /.angular/cache
 /.angular
+
+#clickhouse
+/.clickhouse/logs

@@ -263,7 +263,6 @@ services:
         engine: chromedriver
 
 docker:
-
     ssl:
         enabled: false
         redirect: true
@@ -292,3 +291,4 @@ docker:
     compose:
         yamls:
             - .robot/docker-compose.robot.yml
+            - .clickhouse/docker-compose-clickhouse.yml
