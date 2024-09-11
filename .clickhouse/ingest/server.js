@@ -17,25 +17,46 @@ const server = createServer(async (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
 
-    let messages = "start \n";
+    let messages = '';
     try {
-        const response = await clickhouse.insert('INSERT INTO Event(name, user_id, value, content, timestamp)', [
+        const body = await parseBody(req);
+        await clickhouse.insert('INSERT INTO Event(name, user_id, value, content, timestamp)', [
             {
-                name: 'page_view',
-                user_id: '1',
-                value: 0,
-                content: '{"name": "Product Detail Page"}',
-                timestamp: '2024-09-11 13:48:08',
+                name: body.name,
+                user_id: body.user_id,
+                value: body.value,
+                referer: req.headers.referer,
+                content: body.content,
+                timestamp: (new Date()).toISOString().replace('T', ' ').slice(0, 19),
             }
         ]).toPromise();
-
-        messages += JSON.stringify(response) + "\n";
     } catch(error) {
-        messages += error.message;
+        messages = error.message;
+        res.statusCode = 400;
     }
 
-    messages += " end";
     res.end(messages);
 });
+
+// Helper function to parse the request body
+const parseBody = (req) => {
+    return new Promise((resolve, reject) => {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+        req.on('end', () => {
+            try {
+                resolve(JSON.parse(body));
+            } catch (error) {
+                reject(new Error('Invalid JSON'));
+            }
+        });
+        req.on('error', (error) => {
+            reject(error);
+        });
+    });
+};
+
 server.listen(8888, '0.0.0.0', () => {
 });
