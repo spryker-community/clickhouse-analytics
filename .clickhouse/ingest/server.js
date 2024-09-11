@@ -19,12 +19,14 @@ const server = createServer(async (req, res) => {
 
     let messages = "start \n";
     try {
-        const response = await clickhouse.insert('INSERT INTO Event(name, user_id, value, content, timestamp) VALUES', [
-            'page_view',
-            '1',
-            0,
-            '{"name": "Product Detail Page"}',
-            '2024-09-11T13:48:08Z',
+        const response = await clickhouse.insert('INSERT INTO Event(name, user_id, value, content, timestamp)', [
+            {
+                name: 'page_view',
+                user_id: '1',
+                value: 0,
+                content: '{"name": "Product Detail Page"}',
+                timestamp: '2024-09-11 13:48:08',
+            }
         ]).toPromise();
 
         messages += JSON.stringify(response) + "\n";
