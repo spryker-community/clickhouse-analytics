@@ -20,7 +20,9 @@ class IndexController extends AbstractController
      */
     public function indexAction(Request $request): array
     {
-        return [];
+        return [
+            'visits' => $this->getFacade()->getEventsByInterval(24),
+        ];
     }
 
     /**

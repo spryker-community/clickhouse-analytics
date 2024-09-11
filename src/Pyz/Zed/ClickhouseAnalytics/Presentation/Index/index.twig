@@ -5,5 +5,90 @@
 {% endblock %}
 
 {% block content %}
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- Babel CDN to transpile JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useEffect, useRef } = React;
+
+        // Utility function to generate labels for the last 24 hours
+        function getLast24HoursLabels() {
+            const labels = [];
+            const now = new Date();
+            for (let i = 0; i < 24; i++) {
+                const time = new Date(now.getTime() - (23 - i) * 60 * 60 * 1000);
+                labels.push(time.getHours() + ':00');
+            }
+            return labels;
+        }
+
+        // Utility function to generate random page views (mock data)
+        function getPageViewsData() {
+            return [
+                {% for count in visits %}
+                    {{ count }},
+                {% endfor %}
+            ];
+        }
+
+        function PageViewsChart() {
+            const chartRef = useRef(null);
+
+            useEffect(() => {
+                const ctx = chartRef.current.getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: getLast24HoursLabels(),
+                        datasets: [{
+                            label: 'Page Views in Last 24 Hours',
+                            data: getPageViewsData(),
+                            fill: false,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Time (Hourly)'
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Page Views'
+                                }
+                            }
+                        }
+                    }
+                });
+            }, []);
+
+            return <canvas ref={chartRef}></canvas>;
+        }
+
+        function App() {
+            return (
+                <div>
+                    <h1>Page Views - Last 24 Hours</h1>
+                    <PageViewsChart />
+                </div>
+            );
+        }
+
+        // Render the React component into the #root div
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
 {% endblock %}
