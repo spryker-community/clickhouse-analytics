@@ -292,3 +292,4 @@ docker:
         yamls:
             - .robot/docker-compose.robot.yml
             - .clickhouse/docker-compose-clickhouse.yml
+            - .clickhouse/docker-compose-ingest.yml
