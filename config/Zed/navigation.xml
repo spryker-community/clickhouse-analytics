@@ -8,6 +8,16 @@
         <controller>index</controller>
         <action>index</action>
         <icon>fa-chart-area</icon>
+        <pages>
+            <user-journeys>
+                <label>User Journeys</label>
+                <title>User Journeys</title>
+                <bundle>clickhouse-analytics</bundle>
+                <controller>index</controller>
+                <action>user-journeys</action>
+                <visible>1</visible>
+            </user-journeys>
+        </pages>
     </dashboard>
     <sales>
         <label>Sales</label>
