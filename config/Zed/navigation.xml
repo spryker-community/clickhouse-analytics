@@ -9,6 +9,14 @@
         <action>index</action>
         <icon>fa-chart-area</icon>
         <pages>
+            <page-views>
+                <label>Pageviews</label>
+                <title>Pageviews</title>
+                <bundle>clickhouse-analytics</bundle>
+                <controller>index</controller>
+                <action>index</action>
+                <visible>1</visible>
+            </page-views>
             <user-journeys>
                 <label>User Journeys</label>
                 <title>User Journeys</title>
