@@ -39,7 +39,7 @@ class TesterConsole extends \Spryker\Zed\Kernel\Communication\Console\Console
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        var_dump($this->getFacade()->findMetrics(1000));
+        var_dump($this->getFacade()->getEventsByInterval(24));
 
         return static::CODE_SUCCESS;
     }

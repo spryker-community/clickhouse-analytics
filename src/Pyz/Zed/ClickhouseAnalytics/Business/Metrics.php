@@ -33,4 +33,17 @@ class Metrics
             'events' => $this->client->select($events)->rows(),
         ];
     }
+
+    public function getEventsByInterval(int $hours = 24): array
+    {
+        $query = "select count(*) as count, toStartOfHour(timestamp) as hour from Event where timestamp > now() - interval $hours hour group by hour order by hour;";
+        $result = $this->client->select($query);
+
+        $eventsPerInterval = [];
+        foreach ($result->rows() as $row) {
+            $eventsPerInterval[$row['hour']] = $row['count'];
+        }
+
+        return $eventsPerInterval;
+    }
 }

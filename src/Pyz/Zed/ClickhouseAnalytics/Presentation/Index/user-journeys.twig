@@ -22,11 +22,15 @@
             <tr>
                 <th>Timestamp</th>
                 <th>Event</th>
+                <th>Value</th>
+                <th>Payload</th>
             </tr>
         {% for event in userJourneys[selectedUser] %}
             <tr>
                 <td>{{ event.timestamp }}</td>
                 <td>{{ event.name }}</td>
+                <td>{{ event.value }}</td>
+                <td>{{ event.content }}</td>
             </tr>
         {% endfor %}
         </table>

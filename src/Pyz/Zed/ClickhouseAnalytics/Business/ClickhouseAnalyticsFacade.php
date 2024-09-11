@@ -19,4 +19,9 @@ class ClickhouseAnalyticsFacade extends AbstractFacade
     {
         return $this->getFactory()->createMetrics()->getAllUserJourneys($interval);
     }
+
+    public function getEventsByInterval(int $hours): array
+    {
+        return $this->getFactory()->createMetrics()->getEventsByInterval($hours);
+    }
 }
