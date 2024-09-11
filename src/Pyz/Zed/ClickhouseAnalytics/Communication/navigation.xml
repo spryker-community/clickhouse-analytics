@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <clickhouse-analytics>
+        <label>Clickhouse</label>
+        <title>Clickhouse</title>
+        <bundle>clickhouse-analytics</bundle>
+        <pages>
+            <user-journeys>
+                <label>User Journeys</label>
+                <title>User Journeys</title>
+                <bundle>clickhouse-analytics</bundle>
+                <controller>index</controller>
+                <action>user-journeys</action>
+                <visible>1</visible>
+            </user-journeys>
+        </pages>
+    </clickhouse-analytics>
+</config>
