@@ -38,14 +38,14 @@ class Metrics
     {
         $eventsPerInterval = [];
         for ($i = $hours; $i > 0; $i--) {
-            $eventsPerInterval[date('Y-m-d H:00:00', strtotime("-$i hour"))] = 0;
+            $eventsPerInterval[date('H', strtotime("-$i hour"))] = 0;
         }
 
         $query = "select count(*) as count, toStartOfHour(timestamp) as hour from Event where timestamp > now() - interval $hours hour group by hour order by hour;";
         $result = $this->client->select($query);
 
         foreach ($result->rows() as $row) {
-            $eventsPerInterval[$row['hour']] = $row['count'];
+            $eventsPerInterval[date('H', strtotime($row["hour"]))] = (int)$row['count'];
         }
 
         return $eventsPerInterval;
