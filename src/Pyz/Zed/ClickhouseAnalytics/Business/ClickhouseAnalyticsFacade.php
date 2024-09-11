@@ -9,11 +9,10 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
  */
 class ClickhouseAnalyticsFacade extends AbstractFacade
 {
-    public function findMetrics(): array
+    public function findMetrics(int $interval): array
     {
         return $this
-            ->createAdapter()
-            ->findMetrics();
+            ->getFactory()->createMetrics()->getMetrics($interval);
     }
 
     public function getAllUserJourneys(int $interval): array
@@ -21,4 +20,3 @@ class ClickhouseAnalyticsFacade extends AbstractFacade
         return $this->getFactory()->createMetrics()->getAllUserJourneys($interval);
     }
 }
-a

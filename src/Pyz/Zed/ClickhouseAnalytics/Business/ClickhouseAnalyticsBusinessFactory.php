@@ -15,7 +15,7 @@ class ClickhouseAnalyticsBusinessFactory extends AbstractBusinessFactory
     private function createClickhouseClient(): Client
     {
         $client = new Client([
-            'host' => 'http://clickhouse',
+            'host' => 'clickhouse',
             'port' => '8123',
             'username' => 'default',
             'password' => '',

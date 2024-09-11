@@ -7,6 +7,7 @@
 
 namespace Pyz\Zed\Console;
 
+use Pyz\Zed\ClickhouseAnalytics\Communication\Console\TesterConsole;
 use Pyz\Zed\DataImport\DataImportConfig;
 use Pyz\Zed\Development\Communication\Console\AcceptanceCodeTestConsole;
 use Pyz\Zed\Development\Communication\Console\ApiCodeTestConsole;
@@ -383,6 +384,7 @@ class ConsoleDependencyProvider extends SprykerConsoleDependencyProvider
 
             new DateTimeProductConfiguratorBuildFrontendConsole(),
             new OrderMatrixConsole(),
+            new TesterConsole()
         ];
 
         $propelCommands = $container->getLocator()->propel()->facade()->getConsoleCommands();

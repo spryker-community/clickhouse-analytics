@@ -25,10 +25,12 @@ class Metrics
 
     public function getMetrics(int $intervalMinutes = 60): array
     {
-        $onlineUsers = 'select count(*) from Event where timestamp > now() - interval 10 minute group by user_id;'; // online users
-        $totalUsers = "select count(*) from Event where timestamp > now() - interval $intervalMinutes minute;";
+        $onlineUsers = "select count(*) from Event where timestamp > now() - interval $intervalMinutes minute group by user_id;"; // online users
+        $events = "select count(*) from Event where timestamp > now() - interval $intervalMinutes minute;";
 
-        $result = $this->client->select($onlineUsers);
-        return $result->rows();
+        return [
+            'onlineUsers' => $this->client->select($onlineUsers)->rows(),
+            'events' => $this->client->select($events)->rows(),
+        ];
     }
 }
