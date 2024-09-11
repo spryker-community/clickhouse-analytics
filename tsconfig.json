@@ -8,6 +8,7 @@
         "experimentalDecorators": true,
         "noEmitHelpers": true,
         "importHelpers": true,
+        "jsx": "react",
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "target": "es2020",
@@ -19,6 +20,7 @@
         "rootDir": ".",
         "paths": {
             "*": ["*"],
+            "@/*": ["./*"],
             "src/ShopUi/*": ["./src/Pyz/Yves/ShopUi/Theme/default/*"],
             "src/CompanyWidget/*": ["./src/Pyz/Yves/CompanyWidget/Theme/default/*"],
             "src/ConfigurableBundleWidget/*": ["./src/Pyz/Yves/ConfigurableBundleWidget/Theme/default/*"],

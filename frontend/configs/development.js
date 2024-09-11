@@ -74,14 +74,14 @@ const getConfiguration = async (appSettings) => {
             },
 
             resolve: {
-                extensions: ['.ts', '.js', '.json', '.css', '.scss'],
+                extensions: ['.ts', '.js', '.jsx', '.json', '.css', '.scss'],
                 alias,
             },
 
             module: {
                 rules: [
                     {
-                        test: /\.ts$/,
+                        test: /\.tsx?$/,
                         loader: 'babel-loader',
                         options: {
                             cacheDirectory: true,
