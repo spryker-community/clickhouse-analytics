@@ -1,7 +1,14 @@
-# Spryker B2B Demo Shop
+# Spryker B2B Demo Shop + Clickhouse Analytics
 [![Build Status](https://github.com/spryker-shop/b2b-demo-shop/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/spryker-shop/b2b-demo-shop/actions?query=branch:master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spryker-shop/b2b-demo-shop/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spryker-shop/b2b-demo-shop/?branch=master)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.1-8892BF.svg)](https://php.net/)
+
+## Clickhouse stuff
+Instructions:
+- docker/sdk boot deploy.dev.yml
+- docker/sdk up
+- docker/sdk console npm install
+- docker/sdk console npm run clickhouse:migrate
 
 ## Description
 

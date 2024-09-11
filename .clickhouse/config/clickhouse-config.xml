@@ -3,4 +3,5 @@
         <level>warning</level>
         <console>true</console>
     </logger>
+    <listen_host>0.0.0.0</listen_host>
 </clickhouse>
